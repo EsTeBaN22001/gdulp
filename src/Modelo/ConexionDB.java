@@ -4,10 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author esteb
- */
 public class ConexionDB{
 
     private static final String URL = "jdbc:mysql://localhost:3306/sgulp";
@@ -27,15 +23,15 @@ public class ConexionDB{
                 Class.forName(DRIVER);
 
                 conexion = DriverManager.getConnection(URL, USUARIO, PASSWORD);
-                System.out.println("Conexión exitosa a la base de datos");
+                System.out.println("Conexion exitosa a la base de datos");
 
             } catch( ClassNotFoundException e ){
-                System.err.println("Error: No se encontró el driver de MySQL");
-                System.err.println("Asegúrate de tener el conector MySQL en tu proyecto");
+                System.err.println("Error: No se encontro el driver de MySQL");
+                System.err.println("Asegurate de tener el conector MySQL en tu proyecto");
                 e.printStackTrace();
             } catch( SQLException e ){
                 System.err.println("Error al conectar con la base de datos");
-                System.err.println("Verifica que XAMPP esté ejecutándose y los datos de conexión sean correctos");
+                System.err.println("Verifica que XAMPP esté ejecutandose y los datos de conexion sean correctos");
                 e.printStackTrace();
             }
         }
@@ -56,9 +52,9 @@ public class ConexionDB{
             try{
                 conexion.close();
                 conexion = null;
-                System.out.println("Conexión cerrada correctamente");
+                System.out.println("Conexion cerrada correctamente");
             } catch( SQLException e ){
-                System.err.println("Error al cerrar la conexión");
+                System.err.println("Error al cerrar la conexion");
                 e.printStackTrace();
             }
         }
