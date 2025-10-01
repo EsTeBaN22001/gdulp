@@ -28,7 +28,7 @@ public class Main{
                 String estado = a.isEstado() ? " ACTIVO" : " INACTIVO";
 
                 System.out.println((i + 1) + ". " + a.getApellido() + ", " + a.getNombre());
-                System.out.println("   DNI: " + a.getDni() + " | Fecha Nac: " + fecha + " | Estado: " + estado);
+                System.out.println("   ID: " + a.getId() + " | DNI: " + a.getDni() + " | Fecha Nac: " + fecha + " | Estado: " + estado);
                 System.out.println();
             }
 
