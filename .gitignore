@@ -26,3 +26,4 @@ replay_pid*
 nbproject/project.propierties
 nbproject/private/ 
 nbproject/build-impl.xml 
+/dist/
