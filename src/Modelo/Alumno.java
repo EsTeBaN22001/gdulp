@@ -61,7 +61,8 @@ public class Alumno{
     public void setEstado(boolean estado){
         this.estado = estado;
     }
-
+    
+    // TO STRING //
     @Override
     public String toString(){
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

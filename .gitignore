@@ -26,3 +26,6 @@ nbproject/project.propierties
 nbproject/private/ 
 nbproject/build-impl.xml 
 /dist/
+build/built-jar.properties
+build/classes/.netbeans_update_resources
+src/Modelo/Alumno.java
