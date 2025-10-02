@@ -29,3 +29,4 @@ nbproject/build-impl.xml
 build/built-jar.properties
 build/classes/.netbeans_update_resources
 src/Modelo/Alumno.java
+*.properties
