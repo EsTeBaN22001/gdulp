@@ -1,7 +1,10 @@
-package Views.Alumno;
-public class BorrarAlumno extends javax.swing.JInternalFrame {
+package Views.Materia;
+
+import Views.Alumno.*;
+
+public class AgregarMateria extends javax.swing.JInternalFrame {
     
-    public BorrarAlumno() {
+    public AgregarMateria() {
         initComponents();
         setSize(575, 525);
         
@@ -17,7 +20,8 @@ public class BorrarAlumno extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Buscar Alumno");
+        setTitle("Agregar Materia");
+        setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

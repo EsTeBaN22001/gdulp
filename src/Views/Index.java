@@ -3,6 +3,9 @@ package Views;
 import Views.Alumno.AgregarAlumno;
 import Views.Alumno.BorrarAlumno;
 import Views.Alumno.BuscarAlumno;
+import Views.Materia.ActualizarMateria;
+import Views.Materia.AgregarMateria;
+import Views.Materia.BorrarMateria;
 
 public class Index extends javax.swing.JFrame {
     
@@ -25,7 +28,9 @@ public class Index extends javax.swing.JFrame {
         jBuscarAlumno = new javax.swing.JMenuItem();
         jBorrarAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        jAgregarMateria = new javax.swing.JMenuItem();
+        jActualizarMateria = new javax.swing.JMenuItem();
+        jBorrarMateria = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,8 +75,29 @@ public class Index extends javax.swing.JFrame {
 
         jMenu2.setText("Materia");
 
-        jMenuItem2.setText("jMenuItem2");
-        jMenu2.add(jMenuItem2);
+        jAgregarMateria.setText("Agregar Materia");
+        jAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAgregarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jAgregarMateria);
+
+        jActualizarMateria.setText("Actualizar Materia");
+        jActualizarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jActualizarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jActualizarMateria);
+
+        jBorrarMateria.setText("Borrar Materia");
+        jBorrarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBorrarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jBorrarMateria);
 
         jMenuBar1.add(jMenu2);
 
@@ -124,6 +150,39 @@ public class Index extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jBorrarAlumnoActionPerformed
 
+    private void jAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMateriaActionPerformed
+        
+        AgregarMateria agregarMateria=new AgregarMateria();
+        jDesktopPane1.add(agregarMateria);
+        int x=(jDesktopPane1.getWidth()-agregarMateria.getWidth())/2;
+        int y=(jDesktopPane1.getHeight()-agregarMateria.getHeight())/2;
+        agregarMateria.setLocation(x, y);
+        agregarMateria.setVisible(true);
+        
+    }//GEN-LAST:event_jAgregarMateriaActionPerformed
+
+    private void jActualizarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jActualizarMateriaActionPerformed
+        
+        ActualizarMateria actualizarMateria=new ActualizarMateria();
+        jDesktopPane1.add(actualizarMateria);
+        int x=(jDesktopPane1.getWidth()-actualizarMateria.getWidth())/2;
+        int y=(jDesktopPane1.getHeight()-actualizarMateria.getHeight())/2;
+        actualizarMateria.setLocation(x, y);
+        actualizarMateria.setVisible(true);
+        
+    }//GEN-LAST:event_jActualizarMateriaActionPerformed
+
+    private void jBorrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarMateriaActionPerformed
+        
+        BorrarMateria borrarMateria=new BorrarMateria();
+        jDesktopPane1.add(borrarMateria);
+        int x=(jDesktopPane1.getWidth()-borrarMateria.getWidth())/2;
+        int y=(jDesktopPane1.getHeight()-borrarMateria.getHeight())/2;
+        borrarMateria.setLocation(x, y);
+        borrarMateria.setVisible(true);
+        
+    }//GEN-LAST:event_jBorrarMateriaActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -144,13 +203,22 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jActualizarMateria;
     private javax.swing.JMenuItem jAgregarAlumno;
+    private javax.swing.JMenuItem jAgregarMateria;
     private javax.swing.JMenuItem jBorrarAlumno;
+    private javax.swing.JMenuItem jBorrarMateria;
     private javax.swing.JMenuItem jBuscarAlumno;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
+
+/*
+             /\_/\           ___
+            = o_o =_______    \ \
+             __^      __(  \.__) )
+         (@)<_____>__(_____)____/
+*/
