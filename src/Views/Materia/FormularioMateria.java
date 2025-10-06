@@ -20,7 +20,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Formulario Alumno");
+        setTitle("Formulario Materia");
         setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
