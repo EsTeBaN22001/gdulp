@@ -1,7 +1,10 @@
-package Views.Alumno;
-public class AgregarAlumno extends javax.swing.JInternalFrame {
+package Views.Materia;
+
+import Views.Alumno.*;
+
+public class ActualizarMateria extends javax.swing.JInternalFrame {
     
-    public AgregarAlumno() {
+    public ActualizarMateria() {
         initComponents();
         setSize(575, 525);
         
@@ -17,7 +20,7 @@ public class AgregarAlumno extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Agregar Alumno");
+        setTitle("Actualizar Materia");
         setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
