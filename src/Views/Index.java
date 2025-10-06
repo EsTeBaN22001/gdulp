@@ -1,11 +1,7 @@
 package Views;
 
-import Views.Alumno.AgregarAlumno;
-import Views.Alumno.BorrarAlumno;
-import Views.Alumno.BuscarAlumno;
-import Views.Materia.ActualizarMateria;
-import Views.Materia.AgregarMateria;
-import Views.Materia.BorrarMateria;
+import Views.Alumno.FormularioAlumno;
+import Views.Materia.FormularioMateria;
 
 public class Index extends javax.swing.JFrame {
     
@@ -25,12 +21,8 @@ public class Index extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jAgregarAlumno = new javax.swing.JMenuItem();
-        jBuscarAlumno = new javax.swing.JMenuItem();
-        jBorrarAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jAgregarMateria = new javax.swing.JMenuItem();
-        jActualizarMateria = new javax.swing.JMenuItem();
-        jBorrarMateria = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,12 +34,12 @@ public class Index extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 632, Short.MAX_VALUE)
+            .addGap(0, 633, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Alumno");
 
-        jAgregarAlumno.setText("Agregar Alumno");
+        jAgregarAlumno.setText("Formulario Alumno");
         jAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgregarAlumnoActionPerformed(evt);
@@ -55,49 +47,17 @@ public class Index extends javax.swing.JFrame {
         });
         jMenu1.add(jAgregarAlumno);
 
-        jBuscarAlumno.setText("Buscar Alumno");
-        jBuscarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBuscarAlumnoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jBuscarAlumno);
-
-        jBorrarAlumno.setText("Borrar Alumno");
-        jBorrarAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBorrarAlumnoActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jBorrarAlumno);
-
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materia");
 
-        jAgregarMateria.setText("Agregar Materia");
+        jAgregarMateria.setText("Formulario Materia");
         jAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgregarMateriaActionPerformed(evt);
             }
         });
         jMenu2.add(jAgregarMateria);
-
-        jActualizarMateria.setText("Actualizar Materia");
-        jActualizarMateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jActualizarMateriaActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jActualizarMateria);
-
-        jBorrarMateria.setText("Borrar Materia");
-        jBorrarMateria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBorrarMateriaActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jBorrarMateria);
 
         jMenuBar1.add(jMenu2);
 
@@ -111,7 +71,7 @@ public class Index extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -119,7 +79,7 @@ public class Index extends javax.swing.JFrame {
 
     private void jAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarAlumnoActionPerformed
         
-        AgregarAlumno agregarAlumno=new AgregarAlumno();
+        FormularioAlumno agregarAlumno=new FormularioAlumno();
         jDesktopPane1.add(agregarAlumno);
         int x=(jDesktopPane1.getWidth()-agregarAlumno.getWidth())/2;
         int y=(jDesktopPane1.getHeight()-agregarAlumno.getHeight())/2;
@@ -128,31 +88,9 @@ public class Index extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jAgregarAlumnoActionPerformed
 
-    private void jBuscarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarAlumnoActionPerformed
-        
-        BuscarAlumno buscarAlumno=new BuscarAlumno();
-        jDesktopPane1.add(buscarAlumno);
-        int x=(jDesktopPane1.getWidth()-buscarAlumno.getWidth())/2;
-        int y=(jDesktopPane1.getHeight()-buscarAlumno.getHeight())/2;
-        buscarAlumno.setLocation(x, y);
-        buscarAlumno.setVisible(true);
-        
-    }//GEN-LAST:event_jBuscarAlumnoActionPerformed
-
-    private void jBorrarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarAlumnoActionPerformed
-        
-        BorrarAlumno borrarAlumno=new BorrarAlumno();
-        jDesktopPane1.add(borrarAlumno);
-        int x=(jDesktopPane1.getWidth()-borrarAlumno.getWidth())/2;
-        int y=(jDesktopPane1.getHeight()-borrarAlumno.getHeight())/2;
-        borrarAlumno.setLocation(x, y);
-        borrarAlumno.setVisible(true);
-        
-    }//GEN-LAST:event_jBorrarAlumnoActionPerformed
-
     private void jAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMateriaActionPerformed
         
-        AgregarMateria agregarMateria=new AgregarMateria();
+        FormularioMateria agregarMateria=new FormularioMateria();
         jDesktopPane1.add(agregarMateria);
         int x=(jDesktopPane1.getWidth()-agregarMateria.getWidth())/2;
         int y=(jDesktopPane1.getHeight()-agregarMateria.getHeight())/2;
@@ -160,28 +98,6 @@ public class Index extends javax.swing.JFrame {
         agregarMateria.setVisible(true);
         
     }//GEN-LAST:event_jAgregarMateriaActionPerformed
-
-    private void jActualizarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jActualizarMateriaActionPerformed
-        
-        ActualizarMateria actualizarMateria=new ActualizarMateria();
-        jDesktopPane1.add(actualizarMateria);
-        int x=(jDesktopPane1.getWidth()-actualizarMateria.getWidth())/2;
-        int y=(jDesktopPane1.getHeight()-actualizarMateria.getHeight())/2;
-        actualizarMateria.setLocation(x, y);
-        actualizarMateria.setVisible(true);
-        
-    }//GEN-LAST:event_jActualizarMateriaActionPerformed
-
-    private void jBorrarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarMateriaActionPerformed
-        
-        BorrarMateria borrarMateria=new BorrarMateria();
-        jDesktopPane1.add(borrarMateria);
-        int x=(jDesktopPane1.getWidth()-borrarMateria.getWidth())/2;
-        int y=(jDesktopPane1.getHeight()-borrarMateria.getHeight())/2;
-        borrarMateria.setLocation(x, y);
-        borrarMateria.setVisible(true);
-        
-    }//GEN-LAST:event_jBorrarMateriaActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -203,12 +119,8 @@ public class Index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem jActualizarMateria;
     private javax.swing.JMenuItem jAgregarAlumno;
     private javax.swing.JMenuItem jAgregarMateria;
-    private javax.swing.JMenuItem jBorrarAlumno;
-    private javax.swing.JMenuItem jBorrarMateria;
-    private javax.swing.JMenuItem jBuscarAlumno;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

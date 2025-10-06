@@ -1,7 +1,7 @@
 package Views.Alumno;
-public class BorrarAlumno extends javax.swing.JInternalFrame {
+public class FormularioAlumno extends javax.swing.JInternalFrame {
     
-    public BorrarAlumno() {
+    public FormularioAlumno() {
         initComponents();
         setSize(575, 525);
         
@@ -17,7 +17,8 @@ public class BorrarAlumno extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Buscar Alumno");
+        setTitle("Formulario Alumno");
+        setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
