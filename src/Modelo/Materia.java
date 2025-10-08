@@ -6,6 +6,7 @@ public class Materia {
     private String nombre;
     private int año;
     private boolean estado;
+    private int idInscripto;
 
     // CONTRUCTOR //
     public Materia() {
@@ -16,6 +17,15 @@ public class Materia {
         this.año = año;
         this.estado = estado;
     }
+
+    public Materia(int id, String nombre, int año, boolean estado, int idInscripto) {
+        this.id = id;
+        this.nombre = nombre;
+        this.año = año;
+        this.estado = estado;
+        this.idInscripto = idInscripto;
+    }
+    
     
     // GET - SET //
     public int getId() {
@@ -42,6 +52,16 @@ public class Materia {
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+
+    public int getIdInscripto() {
+        return idInscripto;
+    }
+
+    public void setIdInscripto(int idInscripto) {
+        this.idInscripto = idInscripto;
+    }
+    
+    
     
     // TO STRING //
     @Override
@@ -61,5 +81,9 @@ public class Materia {
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
 */
+
+    public int setIdInscripto() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
