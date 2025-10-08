@@ -18,7 +18,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
     public FormularioAlumno(){
         initComponents();
-        setSize(600, 700);
+        setSize(600, 675);
         cargarCombo();
         cargarCombo2();
         jTable1.setModel(modelo);
@@ -41,7 +41,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                         String apellido = (String) jTable1.getValueAt(filaSeleccionada, 3);
                         Date fecha = (Date) jTable1.getValueAt(filaSeleccionada, 4);
                         String estado = (String) jTable1.getValueAt(filaSeleccionada, 5);
-                        System.out.println(fecha);
 //
 //                        // Asignar los valores de la tabla en los inputs
                         jTextFieldDNI.setText(String.valueOf(dni));
@@ -55,6 +54,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         });
 
     }
+    
 
     private void limpiarInputs(){
         jTextFieldDNI.setText(null);
@@ -85,7 +85,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             return false;
         }
 
-        // Validar Nombre
         if( nombre.isEmpty() ){
             mostrarError("El Nombre es obligatorio", jTextFieldNombre);
             return false;
@@ -95,7 +94,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             return false;
         }
 
-        // Validar Apellido
         if( apellido.isEmpty() ){
             mostrarError("El Apellido es obligatorio", jTextFieldApellido);
             return false;
@@ -105,7 +103,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             return false;
         }
 
-        // Validar Fecha de Nacimiento
         if( fecha == null ){
             mostrarError("La Fecha de Nacimiento es obligatoria", jDateChooser);
             return false;
@@ -114,8 +111,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             mostrarError("La Fecha de Nacimiento no puede ser futura", jDateChooser);
             return false;
         }
-
-        // Validar edad mínima (opcional: al menos 5 años)
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, -5);
         if( fecha.after(cal.getTime()) ){
@@ -185,9 +180,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         jLabel4 = new javax.swing.JLabel();
         jButtonBuscar = new javax.swing.JButton();
         jTextFieldBuscardorPor = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        Icono = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -200,14 +195,15 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         setTitle("Formulario Alumno");
         setToolTipText("");
 
-        jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+6));
         jLabel1.setText("Formulario Alumno");
 
-        jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar Alumno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 16))); // NOI18N
         jPanel2.setToolTipText("Agregar Alumno");
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         jButton4.setText("Limpiar");
+        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -216,6 +212,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         jButtonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonGuardarActionPerformed(evt);
@@ -224,6 +221,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/borrar.png"))); // NOI18N
         jButton2.setText("Borrar");
+        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -232,6 +230,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
         jButton3.setText("Actualizar");
+        jButton3.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -286,7 +285,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, jButton4, jButtonGuardar});
@@ -294,7 +293,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -336,7 +335,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("Buscar Por:");
 
         jButtonBuscar.setText("Buscar");
@@ -379,10 +378,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                 .addGap(68, 68, 68))
         );
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("Agregar Alumno");
-
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -396,38 +393,39 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Formulario.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+                .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Icono))
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(37, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Icono)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(43, 43, 43)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -649,6 +647,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Icono;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -659,7 +658,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
     private com.toedter.calendar.JDateChooser jDateChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
