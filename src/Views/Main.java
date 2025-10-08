@@ -1,72 +1,136 @@
 package Views;
 
-import Modelo.Alumno;
-import Modelo.Materia;
-import Persistencia.alumnoData;
-import Persistencia.materiaData;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import Views.Alumno.FormularioAlumno;
+import Views.Materia.FormularioMateria;
 
-public class Main{
+public class Main extends javax.swing.JFrame{
 
-    public static void main(String[] args){
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
 
-        ArrayList<Alumno> alumnos = new alumnoData().obtenerTodos();
-        ArrayList<Materia> materia = new materiaData().obtenerMaterias();
-        
-        System.out.println("\n========================================");
-        System.out.println("       LISTADO DE ALUMNOS");
-        System.out.println("========================================\n");
-
-        if( alumnos.isEmpty() ){
-            System.out.println("No hay alumnos registrados");
-        } else{
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
-            for( int i = 0 ; i < alumnos.size() ; i++ ){
-                Alumno a = alumnos.get(i);
-                String fecha = (a.getFechaNacimiento() != null)
-                  ? sdf.format(a.getFechaNacimiento()) : "Sin fecha";
-                String estado = a.isEstado() ? " ACTIVO" : " INACTIVO";
-
-                System.out.println((i + 1) + ". " + a.getApellido() + ", " + a.getNombre());
-                System.out.println("   ID: " + a.getId() + " | DNI: " + a.getDni() + " | Fecha Nac: " + fecha + " | Estado: " + estado);
-                System.out.println();
-            }
-
-            System.out.println("========================================");
-            System.out.println("Total de alumnos: " + alumnos.size());
-            System.out.println("========================================\n");
-            
-        }
-        
-        System.out.println("\n========================================");
-        System.out.println("       LISTADO DE MATERIAS");
-        System.out.println("========================================\n");
-        if (materia.isEmpty()) {
-            System.out.println("No hay Materias registradas");
-        } else {
-            for (int i = 0; i < materia.size(); i++) {
-                Materia m = materia.get(i);
-                String estado = m.isEstado() ? "ACTIVA" : "INACTIVA";
-                System.out.println((i + 1) + ". " + m.getNombre());
-                System.out.println("   ID: " + m.getId() + " | Año: " + m.getAño() + "° | Estado: " + estado);
-                System.out.println();
-            }
-            System.out.println("========================================");
-            System.out.println("Total de Materias: " + materia.size());
-            System.out.println("========================================\n");
-        }
-        
-        
+    public Main(){
+        initComponents();
+        setSize(830, 800);
 
     }
-    
-    /*
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jAgregarAlumno = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jAgregarMateria = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 775, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 633, Short.MAX_VALUE)
+        );
+
+        jMenu1.setText("Alumno");
+
+        jAgregarAlumno.setText("Formulario Alumno");
+        jAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAgregarAlumnoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jAgregarAlumno);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Materia");
+
+        jAgregarMateria.setText("Formulario Materia");
+        jAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jAgregarMateriaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jAgregarMateria);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jDesktopPane1)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void jAgregarAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarAlumnoActionPerformed
+
+        FormularioAlumno agregarAlumno = new FormularioAlumno();
+        jDesktopPane1.add(agregarAlumno);
+        int x = (jDesktopPane1.getWidth() - agregarAlumno.getWidth()) / 2;
+        int y = (jDesktopPane1.getHeight() - agregarAlumno.getHeight()) / 2;
+        agregarAlumno.setLocation(x, y);
+        agregarAlumno.setVisible(true);
+
+    }//GEN-LAST:event_jAgregarAlumnoActionPerformed
+
+    private void jAgregarMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jAgregarMateriaActionPerformed
+
+        FormularioMateria agregarMateria = new FormularioMateria();
+        jDesktopPane1.add(agregarMateria);
+        int x = (jDesktopPane1.getWidth() - agregarMateria.getWidth()) / 2;
+        int y = (jDesktopPane1.getHeight() - agregarMateria.getHeight()) / 2;
+        agregarMateria.setLocation(x, y);
+        agregarMateria.setVisible(true);
+
+    }//GEN-LAST:event_jAgregarMateriaActionPerformed
+
+    public static void main(String args[]){
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try{
+            for( javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels() ){
+                if( "Nimbus".equals(info.getName()) ){
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch( ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex ){
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        java.awt.EventQueue.invokeLater(() -> new Main().setVisible(true));
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jAgregarAlumno;
+    private javax.swing.JMenuItem jAgregarMateria;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    // End of variables declaration//GEN-END:variables
+}
+
+/*
              /\_/\           ___
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-     */
-
-}
+ */

@@ -11,10 +11,11 @@ public class Alumno{
     private String nombre;
     private Date fechaNacimiento;
     private boolean estado;
-    
+
     // CONTRUCTOR //
     public Alumno(){
     }
+
     public Alumno(int id, String dni, String apellido, String nombre, Date fechaNacimiento, boolean estado){
         this.id = id;
         this.dni = dni;
@@ -23,7 +24,7 @@ public class Alumno{
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
     }
-    
+
     public Alumno(String dni, String apellido, String nombre, Date fechaNacimiento, boolean estado){
         this.dni = dni;
         this.apellido = apellido;
@@ -31,45 +32,56 @@ public class Alumno{
         this.fechaNacimiento = fechaNacimiento;
         this.estado = estado;
     }
-    
+
     // GET - SET //
     public int getId(){
         return id;
     }
+
     public void setId(int id){
         this.id = id;
     }
+
     public String getDni(){
         return dni;
     }
+
     public void setDni(String dni){
         this.dni = dni;
     }
+
     public String getApellido(){
         return apellido;
     }
+
     public void setApellido(String apellido){
         this.apellido = apellido;
     }
+
     public String getNombre(){
         return nombre;
     }
+
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
+
     public Date getFechaNacimiento(){
         return fechaNacimiento;
     }
+
     public void setFechaNacimiento(Date fechaNacimiento){
         this.fechaNacimiento = fechaNacimiento;
     }
-    public boolean isEstado(){
+
+    public boolean getEstado(){
         return estado;
     }
+
     public void setEstado(boolean estado){
         this.estado = estado;
     }
-    
+
     // TO STRING //
     @Override
     public String toString(){
