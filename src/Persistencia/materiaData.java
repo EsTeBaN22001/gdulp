@@ -261,7 +261,6 @@ public class materiaData {
     }
     
     
-    
 /*
              /\_/\           ___
             = o_o =_______    \ \
