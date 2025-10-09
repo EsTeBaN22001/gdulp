@@ -91,7 +91,7 @@ public class inscripcionData {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al verificar inscripción: " + e.getMessage());
+            System.err.println("Error al verificar inscripcion: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -163,7 +163,7 @@ public class inscripcionData {
                 }
             }
         } catch (SQLException | NumberFormatException e) {
-            System.err.println("Error al buscar inscripción: " + e.getMessage());
+            System.err.println("Error al buscar inscripcion: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -305,12 +305,12 @@ public class inscripcionData {
                     rs = pstmt.getGeneratedKeys();
                     if (rs.next()) {
                         inscripcion.setId(rs.getInt(1));
-                        System.out.println("Inscripción cargada exitosamente con ID: " + inscripcion.getId());
+                        System.out.println("Inscripcion cargada exitosamente con ID: " + inscripcion.getId());
                     }
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al guardar la inscripción: " + e.getMessage());
+            System.err.println("Error al guardar la inscripcion: " + e.getMessage());
             e.printStackTrace();
             inscripcion = null;
         } finally {
@@ -348,15 +348,15 @@ public class inscripcionData {
                 int filasAfectadas = pstmt.executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    System.out.println("Inscripción actualizada exitosamente. ID: " + inscripcion.getId());
+                    System.out.println("Inscripcion actualizada exitosamente. ID: " + inscripcion.getId());
                     return true;
                 } else {
-                    System.out.println("No se encontró la inscripción con ID: " + inscripcion.getId());
+                    System.out.println("No se encontro la inscripción con ID: " + inscripcion.getId());
                     return false;
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al actualizar la inscripción: " + e.getMessage());
+            System.err.println("Error al actualizar la inscripcion: " + e.getMessage());
             e.printStackTrace();
             return false;
         } finally {
@@ -387,10 +387,10 @@ public class inscripcionData {
                 int filasAfectadas = pstmt.executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    System.out.println("Inscripción eliminada exitosamente. ID: " + idInscripto);
+                    System.out.println("Inscripcion eliminada exitosamente. ID: " + idInscripto);
                     return true;
                 } else {
-                    System.out.println("No se encontró la inscripción con ID: " + idInscripto);
+                    System.out.println("No se encontro la inscripción con ID: " + idInscripto);
                     return false;
                 }
             }

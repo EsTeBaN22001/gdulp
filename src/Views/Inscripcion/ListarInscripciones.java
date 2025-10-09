@@ -37,3 +37,11 @@ public class ListarInscripciones extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
+
+
+/*
+             /\_/\           ___
+            = o_o =_______    \ \
+             __^      __(  \.__) )
+         (@)<_____>__(_____)____/
+*/
