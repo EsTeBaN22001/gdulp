@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class materiaData {
     
-    public ArrayList<Materia> obtenerMaterias() {
+    public static ArrayList<Materia> obtenerMaterias() {
         ArrayList<Materia> materias = new ArrayList<Materia>();
         
         String sql = "SELECT * FROM materia";
@@ -245,6 +245,44 @@ public class materiaData {
             }
         } catch( SQLException e ){
             System.err.println("Error al actualizar la Materia: " + e.getMessage());
+            e.printStackTrace();
+            return false;
+        } finally{
+            try{
+                if( pstmt != null ){
+                    pstmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+
+        return false;
+    }
+    public static boolean eliminarMateria(int id){
+        String sql = "DELETE FROM materia WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try{
+            conn = ConexionDB.getConexion();
+            if( conn != null ){
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, id);
+
+                int filasAfectadas = pstmt.executeUpdate();
+
+                if( filasAfectadas > 0 ){
+                    System.out.println("Materia eliminada exitosamente. ID: " + id);
+                    return true;
+                } else{
+                    System.out.println("No se encontró la Materia con ID: " + id);
+                    return false;
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al eliminar Materia: " + e.getMessage());
             e.printStackTrace();
             return false;
         } finally{
