@@ -19,7 +19,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
     public InscripcionViews() {
         
         initComponents();
-        setSize(450, 400);
+        setSize(450, 430);
         jTableMaterias.setModel(modelo);
         
         // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
@@ -33,27 +33,62 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 return this;
             }
         });
-        // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
+        // constructor Del Combo box Materia Para solo mostrar el nombre y año d:/
+        jComboMateria.setRenderer(new javax.swing.DefaultListCellRenderer() {
+            @Override
+            public java.awt.Component getListCellRendererComponent(
+                    javax.swing.JList<?> list, Object value, int index,
+                    boolean isSelected, boolean cellHasFocus) {
+
+                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+
+                if (value instanceof Materia materia) {
+                    setText(materia.getNombre() + " (" + materia.getAño() + " año)");
+                }
+
+                return this;
+            }
+        });
         
         
+        //Carga los combox
         cargarCombo();
+        cargarCombo2();
         
-        
-        
+        //DESACTIVA LOS BOTONES
+        jButtonInscribirse.setEnabled(false);
+        jButtonDardeBaja.setEnabled(true);
+        cargarCombo();
+        cargarCombo2();
+
         
         // Actualiza tabla al cambiar alumno o boton
         jComboAlumno.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
                     actualizarTabla();
+                    cargarCombo2();
                 }
             }
         });
-        jRadioButtonInscriptas.addActionListener(e -> actualizarTabla());
-        jRadioButtonNoInscriptas.addActionListener(e -> actualizarTabla());
-        // Actualiza tabla al cambiar alumno o boton
+
+        // Actualizar / Activar o desactivar cuando toque unos de los dos radios
+        jRadioButtonInscriptas.addActionListener(e -> {
+            jButtonInscribirse.setEnabled(false);
+            jButtonDardeBaja.setEnabled(true);
+            actualizarTabla();
+            cargarCombo();
+            cargarCombo2();
+        });
+        jRadioButtonNoInscriptas.addActionListener(e -> {
+            jButtonInscribirse.setEnabled(true);
+            jButtonDardeBaja.setEnabled(false);
+            actualizarTabla();
+            cargarCombo();
+            cargarCombo2();
+        });
         
-        
+        // Actualiza la tabla
         actualizarTabla();
         
     }
@@ -70,6 +105,10 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
         jRadioButtonNoInscriptas = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMaterias = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jComboMateria = new javax.swing.JComboBox<>();
+        jButtonInscribirse = new javax.swing.JButton();
+        jButtonDardeBaja = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -120,6 +159,27 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableMaterias);
 
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jLabel3.setText("Elija Una Materia:");
+
+        jButtonInscribirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
+        jButtonInscribirse.setText("Inscribirse");
+        jButtonInscribirse.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButtonInscribirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInscribirseActionPerformed(evt);
+            }
+        });
+
+        jButtonDardeBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
+        jButtonDardeBaja.setText("Dar de Baja");
+        jButtonDardeBaja.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jButtonDardeBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDardeBajaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -128,21 +188,30 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
+                                .addGap(37, 37, 37)
                                 .addComponent(jRadioButtonInscriptas)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioButtonNoInscriptas))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jComboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jComboMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(23, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                        .addGap(68, 68, 68)
+                        .addComponent(jButtonInscribirse)
+                        .addGap(58, 58, 58)
+                        .addComponent(jButtonDardeBaja)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,12 +222,20 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                     .addComponent(jComboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
                     .addComponent(jRadioButtonInscriptas)
-                    .addComponent(jRadioButtonNoInscriptas))
+                    .addComponent(jRadioButtonNoInscriptas)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonInscribirse)
+                    .addComponent(jButtonDardeBaja))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -170,10 +247,104 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jRadioButtonInscriptasActionPerformed
     private void jRadioButtonNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNoInscriptasActionPerformed
     }//GEN-LAST:event_jRadioButtonNoInscriptasActionPerformed
-    
 
-    
-    
+
+
+
+    // BOTONES
+    private void jButtonInscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscribirseActionPerformed
+
+        Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
+        Materia materiaSeleccionada = (Materia) jComboMateria.getSelectedItem();
+        
+        if (alumnoSeleccionado == null || materiaSeleccionada == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Debe seleccionar un alumno y una materia", "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Inscripcion nuevaInscripcion = new Inscripcion();
+        nuevaInscripcion.setAlumno(alumnoSeleccionado);
+        nuevaInscripcion.setMateria(materiaSeleccionada);
+        nuevaInscripcion.setNota(0);
+        
+        Inscripcion resultado = inscripcionData.guardarInscripcion(nuevaInscripcion);
+        
+        if (resultado != null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Alumno inscrito exitosamente en " + materiaSeleccionada.getNombre(), 
+                "Exito", 
+                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            actualizarTabla();
+            cargarCombo2();
+            
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error al inscribir al alumno", "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_jButtonInscribirseActionPerformed
+    private void jButtonDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeBajaActionPerformed
+
+        Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
+        Materia materiaSeleccionada = (Materia) jComboMateria.getSelectedItem();
+        
+        if (alumnoSeleccionado == null || materiaSeleccionada == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "Debe seleccionar un alumno y una materia", "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int confirmar = javax.swing.JOptionPane.showConfirmDialog(this,
+            "Seguro de dar de baja a " + alumnoSeleccionado.getNombreCompleto() + 
+            " de la materia " + materiaSeleccionada.getNombre() + "?",
+            "Confirmar baja",
+            javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if (confirmar != javax.swing.JOptionPane.YES_OPTION) {
+            return;
+        }
+        
+        ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
+        Inscripcion inscripcionAEliminar = null;
+
+        for (Inscripcion i : inscripciones) {
+            if (i.getMateria().getId() == materiaSeleccionada.getId()) {
+                inscripcionAEliminar = i;
+                break;
+            }
+        }
+        
+        if (inscripcionAEliminar != null) {
+            boolean eliminado = inscripcionData.eliminarInscripcion(inscripcionAEliminar.getId());
+
+            if (eliminado) {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Alumno dado de baja exitosamente de " + materiaSeleccionada.getNombre(), 
+                    "Exito", 
+                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                actualizarTabla();
+                cargarCombo2();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Error al dar de baja al alumno", "Error", 
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            }
+            
+            
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                "No se encontro la inscripcion", "Error", 
+                javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonDardeBajaActionPerformed
+
+
     private void actualizarTabla() {
     
         DefaultTableModel modelo = (DefaultTableModel) jTableMaterias.getModel();
@@ -217,7 +388,6 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 }
             }
         }
-        // MOSTRADORES PARA LA TABLA SI ELIGIO INCRIPTO O NO
     }
     
     
@@ -228,15 +398,49 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
             }
     }
     
-    
-    
+    private void cargarCombo2() {
+        jComboMateria.removeAllItems();
+
+        Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
+        if (alumnoSeleccionado == null) return;
+
+        materiaData md = new materiaData();
+        ArrayList<Materia> materias = md.obtenerMaterias();
+
+        ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
+        
+        ArrayList<Integer> idsInscriptas = new ArrayList<>();
+        for (Inscripcion i : inscripciones) {
+            idsInscriptas.add(i.getMateria().getId());
+        }
+
+        // CARGAR COMBO SEGÚN RADIOBUTTON SELECCIONADO
+        if (jRadioButtonInscriptas.isSelected()) {
+            for (Materia m : materias) {
+                if (idsInscriptas.contains(m.getId())) {
+                    jComboMateria.addItem(m);
+                }
+            }
+        } else if (jRadioButtonNoInscriptas.isSelected()) {
+            for (Materia m : materias) {
+                if (!idsInscriptas.contains(m.getId())) {
+                    jComboMateria.addItem(m);
+                }
+            }
+        }
+        
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup GrupoVerMaterias;
+    private javax.swing.JButton jButtonDardeBaja;
+    private javax.swing.JButton jButtonInscribirse;
     private javax.swing.JComboBox<Alumno> jComboAlumno;
+    private javax.swing.JComboBox<Materia> jComboMateria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton jRadioButtonInscriptas;
     private javax.swing.JRadioButton jRadioButtonNoInscriptas;
     private javax.swing.JScrollPane jScrollPane1;

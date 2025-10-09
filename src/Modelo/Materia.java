@@ -81,9 +81,10 @@ public class Materia {
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
 */
-
+    
     public int setIdInscripto() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     
 }

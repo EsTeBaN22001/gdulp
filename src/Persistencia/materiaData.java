@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class materiaData {
     
-    public ArrayList<Materia> obtenerMaterias() {
+    public static ArrayList<Materia> obtenerMaterias() {
         ArrayList<Materia> materias = new ArrayList<Materia>();
         
         String sql = "SELECT * FROM materia";
@@ -41,7 +41,7 @@ public class materiaData {
             }
             
         } catch (SQLException e) {
-            System.err.println("✗ Error al obtener materias: " + e.getMessage());
+            System.err.println("Error al obtener materias: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
