@@ -10,13 +10,13 @@ import Persistencia.materiaData;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class InscripcionViews extends javax.swing.JInternalFrame {
+public class PrubaListado extends javax.swing.JInternalFrame {
     
     private DefaultTableModel modelo = new DefaultTableModel(
       new String[]{"Id", "Nombre", "Año", "Estado"}, 0
     );
     
-    public InscripcionViews() {
+    public PrubaListado() {
         
         initComponents();
         setSize(450, 400);
