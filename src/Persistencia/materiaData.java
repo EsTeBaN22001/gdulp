@@ -184,7 +184,7 @@ public class materiaData{
                 pstmt.setInt(1, materia.getId());
                 pstmt.setString(2, materia.getNombre());
                 pstmt.setInt(3, materia.getAño());
-                pstmt.setBoolean(4, materia.isEstado());
+                pstmt.setBoolean(4, materia.getEstado());
 
                 int filasAfectadas = pstmt.executeUpdate();
 
@@ -230,7 +230,7 @@ public class materiaData{
 
                 pstmt.setString(1, materia.getNombre());
                 pstmt.setInt(2, materia.getAño());
-                pstmt.setBoolean(3, materia.isEstado());
+                pstmt.setBoolean(3, materia.getEstado());
                 pstmt.setInt(4, materia.getId());
 
                 int filasAfectadas = pstmt.executeUpdate();

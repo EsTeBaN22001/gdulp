@@ -80,7 +80,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
         comboEstado.addItem("Nombre");
         comboEstado.addItem("Año");
         comboEstado.addItem("Estado");
-        comboEstado.addItem("Inscripto");
 
     }
 
@@ -131,7 +130,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
                 p.getId(),
                 p.getNombre(),
                 p.getAño(),
-                p.isEstado() == true ? "Activo" : "Inactivo"
+                p.getEstado() == true ? "Activo" : "Inactivo"
             });
         }
     }
@@ -173,7 +172,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setText("Buscar Materia");
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/actualizar.png"))); // NOI18N
@@ -331,7 +330,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
@@ -442,7 +440,30 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
                 jTextField1.setText("");
                 return;
             }
-        }// TODO add your handling code here:
+        }
+
+        Materia materia = materiaData.buscarMateriaPor(BuscarPor, Texto);
+
+        if( materia == null ){
+            JOptionPane.showMessageDialog(this,
+              "No se encontró ningún alumno con " + BuscarPor + ": " + Texto,
+              "Materia no encontrada",
+              JOptionPane.INFORMATION_MESSAGE);
+        } else{
+
+            String mensaje = "MATERIA ENCONTRADA\n\n"
+              + "ID: " + materia.getId() + "\n"
+              + "Nombre: " + materia.getNombre() + "\n"
+              + "Año: " + materia.getAño() + "\n"
+              + "Estado: " + (materia.getEstado() ? "Activo" : "Inactivo");
+
+            JOptionPane.showMessageDialog(this,
+              mensaje,
+              "Datos de la materia",
+              JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

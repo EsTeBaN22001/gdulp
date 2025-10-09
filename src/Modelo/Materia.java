@@ -50,7 +50,7 @@ public class Materia{
         this.año = año;
     }
 
-    public boolean isEstado(){
+    public boolean getEstado(){
         return estado;
     }
 
