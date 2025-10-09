@@ -9,56 +9,56 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class materiaData {
-    
-    public static ArrayList<Materia> obtenerMaterias() {
+public class materiaData{
+
+    public static ArrayList<Materia> obtenerMaterias(){
         ArrayList<Materia> materias = new ArrayList<Materia>();
-        
+
         String sql = "SELECT * FROM materia";
-        
+
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
-        
-        try {
+
+        try{
             conn = ConexionDB.getConexion();
-            
-            if (conn != null) {
+
+            if( conn != null ){
                 stmt = conn.createStatement();
-                
+
                 rs = stmt.executeQuery(sql);
-                
-                while (rs.next()) {
+
+                while( rs.next() ){
                     Materia materia = new Materia();
-                    
+
                     materia.setId(rs.getInt("id"));
                     materia.setNombre(rs.getString("nombre"));
                     materia.setAño(rs.getInt("año"));
                     materia.setEstado(rs.getBoolean("estado"));
-                    
+
                     materias.add(materia);
                 }
             }
-            
-        } catch (SQLException e) {
+
+        } catch( SQLException e ){
             System.err.println("Error al obtener materias: " + e.getMessage());
             e.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) {
+        } finally{
+            try{
+                if( rs != null ){
                     rs.close();
                 }
-                if (stmt != null) {
+                if( stmt != null ){
                     stmt.close();
                 }
-            } catch (SQLException e) {
+            } catch( SQLException e ){
                 System.err.println("Error al cerrar recursos: " + e.getMessage());
             }
         }
-        
+
         return materias;
     }
-    
+
     public static boolean existeNombre(String nombre, int id){
         String sql = "SELECT COUNT(*) as total FROM materia WHERE nombre = ? AND id != ?";
 
@@ -98,8 +98,8 @@ public class materiaData {
 
         return false;
     }
-    
-     public static Materia buscarMateriaPor(String criterio, String texto){
+
+    public static Materia buscarMateriaPor(String criterio, String texto){
         Materia materia = null;
         String sql = "SELECT * FROM materia WHERE ";
 
@@ -146,7 +146,7 @@ public class materiaData {
                     materia.setNombre(rs.getString("nombre"));
                     materia.setAño(rs.getInt("año"));
                     materia.setEstado(rs.getBoolean("estado"));
-                    
+
                 }
             }
         } catch( SQLException | NumberFormatException e ){
@@ -167,9 +167,10 @@ public class materiaData {
 
         return materia;
     }
+
     public static Materia guardarMateria(Materia materia){
 
-        String sql = "INSERT INTO materia (id, nombre, año, estado, idinscripto) VALUES (?,?,?,?,?)";
+        String sql = "INSERT INTO materia (id, nombre, año, estado) VALUES (?,?,?,?)";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -214,10 +215,10 @@ public class materiaData {
 
         return materia;
     }
-    
+
     public static boolean actualizarMateria(Materia materia){
-        
-        String sql = "UPDATE materia SET id = ?, nombre = ?, año = ?, estado = ?, idinscripto =? WHERE id = ?";
+
+        String sql = "UPDATE materia SET nombre = ?, año = ?, estado = ? WHERE id = ?";
 
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -227,11 +228,10 @@ public class materiaData {
             if( conn != null ){
                 pstmt = conn.prepareStatement(sql);
 
-                pstmt.setInt(1, materia.getId());
-                pstmt.setString(2, materia.getNombre());
-                pstmt.setInt(3, materia.getAño());
-                pstmt.setBoolean(4, materia.isEstado());
-                pstmt.setInt(5, materia.setIdInscripto());
+                pstmt.setString(1, materia.getNombre());
+                pstmt.setInt(2, materia.getAño());
+                pstmt.setBoolean(3, materia.isEstado());
+                pstmt.setInt(4, materia.getId());
 
                 int filasAfectadas = pstmt.executeUpdate();
 
@@ -259,6 +259,7 @@ public class materiaData {
 
         return false;
     }
+
     public static boolean eliminarMateria(int id){
         String sql = "DELETE FROM materia WHERE id = ?";
 
@@ -297,13 +298,11 @@ public class materiaData {
 
         return false;
     }
-    
-    
-/*
+
+    /*
              /\_/\           ___
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
-    
+     */
 }
