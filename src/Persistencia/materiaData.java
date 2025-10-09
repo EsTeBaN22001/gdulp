@@ -41,7 +41,7 @@ public class materiaData {
             }
             
         } catch (SQLException e) {
-            System.err.println("✗ Error al obtener materias: " + e.getMessage());
+            System.err.println("Error al obtener materias: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
@@ -297,7 +297,6 @@ public class materiaData {
 
         return false;
     }
-    
     
     
 /*

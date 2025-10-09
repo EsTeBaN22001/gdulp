@@ -1,6 +1,9 @@
 package Views;
 
 import Views.Alumno.FormularioAlumno;
+import Views.Inscripcion.CargaNotas;
+import Views.Inscripcion.InscripcionViews;
+import Views.Inscripcion.ListarInscripciones;
 import Views.Materia.FormularioMateria;
 
 public class Main extends javax.swing.JFrame{
@@ -24,6 +27,10 @@ public class Main extends javax.swing.JFrame{
         jAgregarAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jAgregarMateria = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jInscripcion = new javax.swing.JMenuItem();
+        jCargaNotas = new javax.swing.JMenuItem();
+        jListarInscripciones = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +73,34 @@ public class Main extends javax.swing.JFrame{
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Inscripcion");
+
+        jInscripcion.setText("Inscripcion");
+        jInscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jInscripcionActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jInscripcion);
+
+        jCargaNotas.setText("CargaNotas");
+        jCargaNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCargaNotasActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jCargaNotas);
+
+        jListarInscripciones.setText("Listar Inscripciones");
+        jListarInscripciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListarInscripcionesActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jListarInscripciones);
+
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,6 +139,33 @@ public class Main extends javax.swing.JFrame{
 
     }//GEN-LAST:event_jAgregarMateriaActionPerformed
 
+    private void jInscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jInscripcionActionPerformed
+        InscripcionViews inscripcion = new InscripcionViews();
+        jDesktopPane1.add(inscripcion);
+        int x = (jDesktopPane1.getWidth() - inscripcion.getWidth()) / 2;
+        int y = (jDesktopPane1.getHeight() - inscripcion.getHeight()) / 2;
+        inscripcion.setLocation(x, y);
+        inscripcion.setVisible(true);
+    }//GEN-LAST:event_jInscripcionActionPerformed
+
+    private void jCargaNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCargaNotasActionPerformed
+        CargaNotas cargaNotas = new CargaNotas();
+        jDesktopPane1.add(cargaNotas);
+        int x = (jDesktopPane1.getWidth() - cargaNotas.getWidth()) / 2;
+        int y = (jDesktopPane1.getHeight() - cargaNotas.getHeight()) / 2;
+        cargaNotas.setLocation(x, y);
+        cargaNotas.setVisible(true);
+    }//GEN-LAST:event_jCargaNotasActionPerformed
+
+    private void jListarInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListarInscripcionesActionPerformed
+        ListarInscripciones listarInscripciones = new ListarInscripciones();
+        jDesktopPane1.add(listarInscripciones);
+        int x = (jDesktopPane1.getWidth() - listarInscripciones.getWidth()) / 2;
+        int y = (jDesktopPane1.getHeight() - listarInscripciones.getHeight()) / 2;
+        listarInscripciones.setLocation(x, y);
+        listarInscripciones.setVisible(true);
+    }//GEN-LAST:event_jListarInscripcionesActionPerformed
+
     public static void main(String args[]){
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -126,10 +188,14 @@ public class Main extends javax.swing.JFrame{
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem jAgregarAlumno;
     private javax.swing.JMenuItem jAgregarMateria;
+    private javax.swing.JMenuItem jCargaNotas;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jImgFondo;
+    private javax.swing.JMenuItem jInscripcion;
+    private javax.swing.JMenuItem jListarInscripciones;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

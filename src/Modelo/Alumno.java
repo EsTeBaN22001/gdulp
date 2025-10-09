@@ -98,5 +98,10 @@ public class Alumno{
           + ", estado=" + estadoTexto
           + '}';
     }
+    
+    public String getNombreCompleto() {
+        return nombre + " " + apellido;
+    }
+
 
 }
