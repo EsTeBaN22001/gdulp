@@ -495,7 +495,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
     }//GEN-LAST:event_jTextFieldBuscardorPorActionPerformed
 
     private void jTextFieldNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNombreActionPerformed
-
     }//GEN-LAST:event_jTextFieldNombreActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -546,7 +545,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         // TODO add your handling code here:
         int fila = jTable1.getSelectedRow();
         if( fila == -1 ){
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un Alumno de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -561,14 +560,14 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             }
         }
         if( alumnoAEliminar == null ){
-            JOptionPane.showMessageDialog(this, "Producto no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Alumno no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         // Confirmar eliminación
         int confirmacion = JOptionPane.showConfirmDialog(
           this,
-          "¿Está seguro de que desea eliminar el producto:\n" + alumnoAEliminar.getNombre() + " " + alumnoAEliminar.getApellido() + "?",
+          "¿Está seguro de que desea eliminar el Alumno:\n" + alumnoAEliminar.getNombre() + " " + alumnoAEliminar.getApellido() + "?",
           "Confirmar eliminación",
           JOptionPane.YES_NO_OPTION,
           JOptionPane.WARNING_MESSAGE
@@ -578,7 +577,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             alumnoData.eliminarAlumno(id);
             actualizarTabla();
             limpiarInputs();
-            JOptionPane.showMessageDialog(this, "Producto eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Alumno eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             jButtonGuardar.setEnabled(true);
             filaSeleccionadaParaEdicion = -1;
         }
@@ -589,7 +588,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         int fila = jTable1.getSelectedRow();
         if( fila == -1 ){
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione un producto de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un Alumno de la tabla para eliminar.", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
