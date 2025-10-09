@@ -22,6 +22,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
         setSize(450, 430);
         jTableMaterias.setModel(modelo);
         
+        
         // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
         jComboAlumno.setRenderer(new javax.swing.DefaultListCellRenderer() {
             @Override
@@ -109,23 +110,28 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
         jComboMateria = new javax.swing.JComboBox<>();
         jButtonInscribirse = new javax.swing.JButton();
         jButtonDardeBaja = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setTitle("InscripcionViews");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel1.setText("Elija un Alumno:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 26, -1, -1));
 
         jComboAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboAlumnoActionPerformed(evt);
             }
         });
+        getContentPane().add(jComboAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 27, 201, -1));
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel2.setText("Ver:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 65, -1, -1));
 
         GrupoVerMaterias.add(jRadioButtonInscriptas);
         jRadioButtonInscriptas.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -136,6 +142,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 jRadioButtonInscriptasActionPerformed(evt);
             }
         });
+        getContentPane().add(jRadioButtonInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 66, -1, -1));
 
         GrupoVerMaterias.add(jRadioButtonNoInscriptas);
         jRadioButtonNoInscriptas.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
@@ -145,6 +152,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 jRadioButtonNoInscriptasActionPerformed(evt);
             }
         });
+        getContentPane().add(jRadioButtonNoInscriptas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 66, -1, -1));
 
         jTableMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -159,8 +167,13 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTableMaterias);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 104, 392, 170));
+
         jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel3.setText("Elija Una Materia:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 286, -1, -1));
+
+        getContentPane().add(jComboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 287, 225, -1));
 
         jButtonInscribirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         jButtonInscribirse.setText("Inscribirse");
@@ -170,6 +183,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 jButtonInscribirseActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonInscribirse, new org.netbeans.lib.awtextra.AbsoluteConstraints(68, 331, -1, -1));
 
         jButtonDardeBaja.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
         jButtonDardeBaja.setText("Dar de Baja");
@@ -179,64 +193,10 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 jButtonDardeBajaActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonDardeBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(242, 331, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(37, 37, 37)
-                                .addComponent(jRadioButtonInscriptas)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonNoInscriptas))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboMateria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButtonInscribirse)
-                        .addGap(58, 58, 58)
-                        .addComponent(jButtonDardeBaja)))
-                .addContainerGap(23, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButtonInscriptas)
-                    .addComponent(jRadioButtonNoInscriptas)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jComboMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonInscribirse)
-                    .addComponent(jButtonDardeBaja))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user.png"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, 50, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -441,6 +401,7 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButton jRadioButtonInscriptas;
     private javax.swing.JRadioButton jRadioButtonNoInscriptas;
     private javax.swing.JScrollPane jScrollPane1;
