@@ -50,7 +50,7 @@ public class inscripcionData {
             }
             
         } catch (SQLException e) {
-            System.err.println("✗ Error al obtener inscripciones: " + e.getMessage());
+            System.err.println("Error al obtener inscripciones: " + e.getMessage());
             e.printStackTrace();
         } finally {
             try {
