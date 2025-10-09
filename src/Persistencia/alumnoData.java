@@ -102,8 +102,8 @@ public class alumnoData{
         return false;
     }
 
-    public static Alumno buscarAlumnoPor(String criterio, String texto){
-        Alumno alumno = null;
+    public static ArrayList<Alumno> buscarAlumnosPor(String criterio, String texto){
+        ArrayList<Alumno> alumnos = new ArrayList<>();
         String sql = "SELECT * FROM alumno WHERE ";
 
         switch( criterio ){
@@ -111,16 +111,19 @@ public class alumnoData{
                 sql += "id = ?";
                 break;
             case "DNI":
-                sql += "dni = ?";
-                break;
-            case "Apellido":
-                sql += "apellido = ?";
+                sql += "dni LIKE ?";
                 break;
             case "Nombre":
-                sql += "nombre = ?";
+                sql += "nombre LIKE ?";
+                break;
+            case "Apellido":
+                sql += "apellido LIKE ?";
+                break;
+            case "Estado":
+                sql += "estado = ?";
                 break;
             default:
-                return null;
+                return obtenerTodos();
         }
 
         Connection conn = null;
@@ -134,24 +137,30 @@ public class alumnoData{
 
                 if( criterio.equals("ID") ){
                     pstmt.setInt(1, Integer.parseInt(texto));
-                } else{
-                    pstmt.setString(1, texto);
+                } else if( criterio.equals("DNI") || criterio.equals("Nombre") || criterio.equals("Apellido") ){
+                    pstmt.setString(1, "%" + texto + "%");
+                } else if( criterio.equals("Estado") ){
+                    boolean estadoBool = texto.equalsIgnoreCase("Activo")
+                      || texto.equalsIgnoreCase("true")
+                      || texto.equals("1");
+                    pstmt.setBoolean(1, estadoBool);
                 }
 
                 rs = pstmt.executeQuery();
 
-                if( rs.next() ){
-                    alumno = new Alumno();
+                while( rs.next() ){
+                    Alumno alumno = new Alumno();
                     alumno.setId(rs.getInt("id"));
                     alumno.setDni(rs.getString("dni"));
                     alumno.setApellido(rs.getString("apellido"));
                     alumno.setNombre(rs.getString("nombre"));
                     alumno.setFechaNacimiento(rs.getDate("fechaNacimiento"));
                     alumno.setEstado(rs.getBoolean("estado"));
+                    alumnos.add(alumno);
                 }
             }
         } catch( SQLException | NumberFormatException e ){
-            System.err.println("Error al buscar alumno: " + e.getMessage());
+            System.err.println("Error al buscar alumnos: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -166,7 +175,7 @@ public class alumnoData{
             }
         }
 
-        return alumno;
+        return alumnos;
     }
 
     public static Alumno guardarAlumno(Alumno alumno){
@@ -301,7 +310,5 @@ public class alumnoData{
 
         return false;
     }
-    
-    
 
 }

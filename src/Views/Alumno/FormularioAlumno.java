@@ -3,6 +3,7 @@ package Views.Alumno;
 import Modelo.Alumno;
 import Persistencia.alumnoData;
 import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         cargarCombo();
         cargarCombo2();
         jTable1.setModel(modelo);
-        actualizarTabla();
+        limpiarTabla();
 
         // Función para que al hacer click sobre un alumno se cargue la información en el formulario de edición
         jTable1.getSelectionModel().addListSelectionListener(new javax.swing.event.ListSelectionListener(){
@@ -54,7 +55,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         });
 
     }
-    
 
     private void limpiarInputs(){
         jTextFieldDNI.setText(null);
@@ -137,7 +137,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         jComboBox2.addItem("Inactivo");
     }
 
-    private void actualizarTabla(){
+    private void limpiarTabla(){
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         modelo.setRowCount(0);
 
@@ -149,6 +149,22 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                 p.getApellido(),
                 p.getFechaNacimiento(),
                 p.getEstado() ? "Activo" : "Inactivo"
+            });
+        }
+    }
+
+    private void actualizarTablaConResultados(ArrayList<Alumno> alumnos){
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        modelo.setRowCount(0);
+
+        for( Alumno a : alumnos ){
+            modelo.addRow(new Object[]{
+                a.getId(),
+                a.getDni(),
+                a.getNombre(),
+                a.getApellido(),
+                a.getFechaNacimiento(),
+                a.getEstado() ? "Activo" : "Inactivo"
             });
         }
     }
@@ -183,6 +199,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Icono = new javax.swing.JLabel();
+        jButtonClearFilter = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -395,20 +412,33 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         Icono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Formulario.png"))); // NOI18N
 
+        jButtonClearFilter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nuevo.png"))); // NOI18N
+        jButtonClearFilter.setText("Limpiar Filtro");
+        jButtonClearFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonClearFilterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Icono))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonClearFilter))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Icono))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -425,7 +455,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonClearFilter)
+                .addGap(14, 14, 14)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
         );
@@ -439,20 +471,17 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
 
-        String BuscarPor = (String) jComboBoxBuscar.getSelectedItem();
-        String Texto = jTextFieldBuscardorPor.getText();
+        String buscarPor = (String) jComboBoxBuscar.getSelectedItem();
+        String texto = jTextFieldBuscardorPor.getText().trim();
 
-        if( Texto.isEmpty() ){
-            JOptionPane.showMessageDialog(this,
-              "Por favor ingrese un valor para buscar",
-              "Campo vacío",
-              JOptionPane.WARNING_MESSAGE);
+        if( texto.isEmpty() ){
+            limpiarTabla();
             return;
         }
 
-        if( BuscarPor.equals("ID") ){
+        if( buscarPor.equals("ID") ){
             try{
-                Integer.parseInt(Texto);
+                Integer.parseInt(texto);
             } catch( NumberFormatException e ){
                 JOptionPane.showMessageDialog(this,
                   "El ID debe ser un número",
@@ -463,31 +492,21 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             }
         }
 
-        alumnoData aData = new alumnoData();
-        Alumno alumno = aData.buscarAlumnoPor(BuscarPor, Texto);
+        ArrayList<Alumno> resultados = alumnoData.buscarAlumnosPor(buscarPor, texto);
 
-        if( alumno == null ){
+        if( resultados.isEmpty() ){
             JOptionPane.showMessageDialog(this,
-              "No se encontró ningún alumno con " + BuscarPor + ": " + Texto,
-              "Alumno no encontrado",
+              "No se encontraron alumnos con " + buscarPor + ": " + texto,
+              "Sin resultados",
               JOptionPane.INFORMATION_MESSAGE);
+            limpiarTabla();
         } else{
-
-            String mensaje = "ALUMNO ENCONTRADO\n\n"
-              + "ID: " + alumno.getId() + "\n"
-              + "DNI: " + alumno.getDni() + "\n"
-              + "Apellido: " + alumno.getApellido() + "\n"
-              + "Nombre: " + alumno.getNombre() + "\n"
-              + "Fecha Nacimiento: " + alumno.getFechaNacimiento() + "\n"
-              + "Estado: " + (alumno.getEstado() ? "Activo" : "Inactivo");
-
+            actualizarTablaConResultados(resultados);
             JOptionPane.showMessageDialog(this,
-              mensaje,
-              "Datos del Alumno",
+              "Se encontraron " + resultados.size() + " alumno(s)",
+              "Búsqueda exitosa",
               JOptionPane.INFORMATION_MESSAGE);
         }
-
-        jTextFieldBuscardorPor.setText("");
 
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
@@ -536,7 +555,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
               JOptionPane.ERROR_MESSAGE);
         }
         limpiarInputs();
-        actualizarTabla();
+        limpiarTabla();
         filaSeleccionadaParaEdicion = -1;
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
@@ -575,7 +594,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         if( confirmacion == JOptionPane.YES_OPTION ){
             alumnoData.eliminarAlumno(id);
-            actualizarTabla();
+            limpiarTabla();
             limpiarInputs();
             JOptionPane.showMessageDialog(this, "Alumno eliminado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             jButtonGuardar.setEnabled(true);
@@ -633,12 +652,19 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             JOptionPane.showMessageDialog(this, "Alumno actualizado correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             jButtonGuardar.setEnabled(true);
             filaSeleccionadaParaEdicion = -1;
-            actualizarTabla();
+            limpiarTabla();
             limpiarInputs();
             jButtonGuardar.setEnabled(true);
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButtonClearFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonClearFilterActionPerformed
+        limpiarInputs();
+        jTextFieldBuscardorPor.setText("");
+        limpiarTabla();
+        jButtonGuardar.setEnabled(true);
+    }//GEN-LAST:event_jButtonClearFilterActionPerformed
 
     private void mostrarError(String mensaje, Component componente){
         JOptionPane.showMessageDialog(this, mensaje, "Error de validación", JOptionPane.ERROR_MESSAGE);
@@ -651,6 +677,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonClearFilter;
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxBuscar;

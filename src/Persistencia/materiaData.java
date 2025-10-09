@@ -99,8 +99,8 @@ public class materiaData{
         return false;
     }
 
-    public static Materia buscarMateriaPor(String criterio, String texto){
-        Materia materia = null;
+    public static ArrayList<Materia> buscarMateriasPor(String criterio, String texto){
+        ArrayList<Materia> materias = new ArrayList<>();
         String sql = "SELECT * FROM materia WHERE ";
 
         switch( criterio ){
@@ -108,7 +108,7 @@ public class materiaData{
                 sql += "id = ?";
                 break;
             case "Nombre":
-                sql += "nombre = ?";
+                sql += "nombre LIKE ?";
                 break;
             case "Año":
                 sql += "año = ?";
@@ -116,11 +116,8 @@ public class materiaData{
             case "Estado":
                 sql += "estado = ?";
                 break;
-            case "Id Inscripto":
-                sql += "isInscripto = ?";
-                break;
             default:
-                return null;
+                return obtenerMaterias();
         }
 
         Connection conn = null;
@@ -134,23 +131,30 @@ public class materiaData{
 
                 if( criterio.equals("ID") ){
                     pstmt.setInt(1, Integer.parseInt(texto));
-                } else{
-                    pstmt.setString(1, texto);
+                } else if( criterio.equals("Nombre") ){
+                    pstmt.setString(1, "%" + texto + "%");
+                } else if( criterio.equals("Año") ){
+                    pstmt.setInt(1, Integer.parseInt(texto));
+                } else if( criterio.equals("Estado") ){
+                    boolean estadoBool = texto.equalsIgnoreCase("Activo")
+                      || texto.equalsIgnoreCase("true")
+                      || texto.equals("1");
+                    pstmt.setBoolean(1, estadoBool);
                 }
 
                 rs = pstmt.executeQuery();
 
-                if( rs.next() ){
-                    materia = new Materia();
+                while( rs.next() ){
+                    Materia materia = new Materia();
                     materia.setId(rs.getInt("id"));
                     materia.setNombre(rs.getString("nombre"));
                     materia.setAño(rs.getInt("año"));
                     materia.setEstado(rs.getBoolean("estado"));
-
+                    materias.add(materia);
                 }
             }
         } catch( SQLException | NumberFormatException e ){
-            System.err.println("Error al buscar materia: " + e.getMessage());
+            System.err.println("Error al buscar materias: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -165,7 +169,7 @@ public class materiaData{
             }
         }
 
-        return materia;
+        return materias;
     }
 
     public static Materia guardarMateria(Materia materia){
