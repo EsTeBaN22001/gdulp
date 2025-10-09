@@ -84,7 +84,7 @@ public class alumnoData{
                 }
             }
         } catch( SQLException e ){
-            System.err.println("✗ Error al verificar DNI: " + e.getMessage());
+            System.err.println("Error al verificar DNI: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -151,7 +151,7 @@ public class alumnoData{
                 }
             }
         } catch( SQLException | NumberFormatException e ){
-            System.err.println("✗ Error al buscar alumno: " + e.getMessage());
+            System.err.println("Error al buscar alumno: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -239,15 +239,15 @@ public class alumnoData{
                 int filasAfectadas = pstmt.executeUpdate();
 
                 if( filasAfectadas > 0 ){
-                    System.out.println("✓ Alumno actualizado exitosamente. ID: " + alumno.getId());
+                    System.out.println("Alumno actualizado exitosamente. ID: " + alumno.getId());
                     return true;
                 } else{
-                    System.out.println("✗ No se encontró el alumno con ID: " + alumno.getId());
+                    System.out.println("No se encontró el alumno con ID: " + alumno.getId());
                     return false;
                 }
             }
         } catch( SQLException e ){
-            System.err.println("✗ Error al actualizar alumno: " + e.getMessage());
+            System.err.println("Error al actualizar alumno: " + e.getMessage());
             e.printStackTrace();
             return false;
         } finally{

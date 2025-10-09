@@ -81,7 +81,7 @@ public class materiaData {
                 }
             }
         } catch( SQLException e ){
-            System.err.println("✗ Error al verificar Nombre: " + e.getMessage());
+            System.err.println("Error al verificar Nombre: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -150,7 +150,7 @@ public class materiaData {
                 }
             }
         } catch( SQLException | NumberFormatException e ){
-            System.err.println("✗ Error al buscar materia: " + e.getMessage());
+            System.err.println("Error al buscar materia: " + e.getMessage());
             e.printStackTrace();
         } finally{
             try{
@@ -236,15 +236,15 @@ public class materiaData {
                 int filasAfectadas = pstmt.executeUpdate();
 
                 if( filasAfectadas > 0 ){
-                    System.out.println("✓ Materia actualizada exitosamente. ID: " + materia.getId());
+                    System.out.println("Materia actualizada exitosamente. ID: " + materia.getId());
                     return true;
                 } else{
-                    System.out.println("✗ No se encontró la Materia con ID: " + materia.getId());
+                    System.out.println("No se encontró la Materia con ID: " + materia.getId());
                     return false;
                 }
             }
         } catch( SQLException e ){
-            System.err.println("✗ Error al actualizar la Materia: " + e.getMessage());
+            System.err.println("Error al actualizar la Materia: " + e.getMessage());
             e.printStackTrace();
             return false;
         } finally{
