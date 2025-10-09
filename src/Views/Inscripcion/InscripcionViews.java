@@ -1,4 +1,3 @@
-
 package Views.Inscripcion;
 
 import Modelo.Alumno;
@@ -10,63 +9,60 @@ import Persistencia.materiaData;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
-public class InscripcionViews extends javax.swing.JInternalFrame {
-    
+public class InscripcionViews extends javax.swing.JInternalFrame{
+
     private DefaultTableModel modelo = new DefaultTableModel(
       new String[]{"Id", "Nombre", "Año", "Estado"}, 0
     );
-    
-    public InscripcionViews() {
-        
+
+    public InscripcionViews(){
+
         initComponents();
         setSize(450, 430);
         jTableMaterias.setModel(modelo);
-        
-        
+
         // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
-        jComboAlumno.setRenderer(new javax.swing.DefaultListCellRenderer() {
+        jComboAlumno.setRenderer(new javax.swing.DefaultListCellRenderer(){
             @Override
-            public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value instanceof Alumno alumno) {
+                if( value instanceof Alumno alumno ){
                     setText(alumno.getNombreCompleto());
                 }
                 return this;
             }
         });
         // constructor Del Combo box Materia Para solo mostrar el nombre y año d:/
-        jComboMateria.setRenderer(new javax.swing.DefaultListCellRenderer() {
+        jComboMateria.setRenderer(new javax.swing.DefaultListCellRenderer(){
             @Override
             public java.awt.Component getListCellRendererComponent(
-                    javax.swing.JList<?> list, Object value, int index,
-                    boolean isSelected, boolean cellHasFocus) {
+              javax.swing.JList<?> list, Object value, int index,
+              boolean isSelected, boolean cellHasFocus){
 
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
-                if (value instanceof Materia materia) {
+                if( value instanceof Materia materia ){
                     setText(materia.getNombre() + " (" + materia.getAño() + " año)");
                 }
 
                 return this;
             }
         });
-        
-        
+
         //Carga los combox
         cargarCombo();
         cargarCombo2();
-        
+
         //DESACTIVA LOS BOTONES
         jButtonInscribirse.setEnabled(false);
         jButtonDardeBaja.setEnabled(true);
         cargarCombo();
         cargarCombo2();
 
-        
         // Actualiza tabla al cambiar alumno o boton
-        jComboAlumno.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                if (evt.getStateChange() == java.awt.event.ItemEvent.SELECTED) {
+        jComboAlumno.addItemListener(new java.awt.event.ItemListener(){
+            public void itemStateChanged(java.awt.event.ItemEvent evt){
+                if( evt.getStateChange() == java.awt.event.ItemEvent.SELECTED ){
                     actualizarTabla();
                     cargarCombo2();
                 }
@@ -78,22 +74,20 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
             jButtonInscribirse.setEnabled(false);
             jButtonDardeBaja.setEnabled(true);
             actualizarTabla();
-            cargarCombo();
             cargarCombo2();
         });
         jRadioButtonNoInscriptas.addActionListener(e -> {
             jButtonInscribirse.setEnabled(true);
             jButtonDardeBaja.setEnabled(false);
             actualizarTabla();
-            cargarCombo();
             cargarCombo2();
         });
-        
+
         // Actualiza la tabla
         actualizarTabla();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -208,125 +202,120 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
     private void jRadioButtonNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNoInscriptasActionPerformed
     }//GEN-LAST:event_jRadioButtonNoInscriptasActionPerformed
 
-
-
-
     // BOTONES
     private void jButtonInscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInscribirseActionPerformed
 
         Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
         Materia materiaSeleccionada = (Materia) jComboMateria.getSelectedItem();
-        
-        if (alumnoSeleccionado == null || materiaSeleccionada == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Debe seleccionar un alumno y una materia", "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        if( alumnoSeleccionado == null || materiaSeleccionada == null ){
+            javax.swing.JOptionPane.showMessageDialog(this,
+              "Debe seleccionar un alumno y una materia", "Error",
+              javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         Inscripcion nuevaInscripcion = new Inscripcion();
         nuevaInscripcion.setAlumno(alumnoSeleccionado);
         nuevaInscripcion.setMateria(materiaSeleccionada);
         nuevaInscripcion.setNota(0);
-        
+
         Inscripcion resultado = inscripcionData.guardarInscripcion(nuevaInscripcion);
-        
-        if (resultado != null) {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Alumno inscrito exitosamente en " + materiaSeleccionada.getNombre(), 
-                "Exito", 
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        if( resultado != null ){
+            javax.swing.JOptionPane.showMessageDialog(this,
+              "Alumno inscrito exitosamente en " + materiaSeleccionada.getNombre(),
+              "Exito",
+              javax.swing.JOptionPane.INFORMATION_MESSAGE);
             actualizarTabla();
             cargarCombo2();
-            
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Error al inscribir al alumno", "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        } else{
+            javax.swing.JOptionPane.showMessageDialog(this,
+              "Error al inscribir al alumno", "Error",
+              javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
     }//GEN-LAST:event_jButtonInscribirseActionPerformed
     private void jButtonDardeBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDardeBajaActionPerformed
 
         Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
         Materia materiaSeleccionada = (Materia) jComboMateria.getSelectedItem();
-        
-        if (alumnoSeleccionado == null || materiaSeleccionada == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "Debe seleccionar un alumno y una materia", "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        int confirmar = javax.swing.JOptionPane.showConfirmDialog(this,
-            "Seguro de dar de baja a " + alumnoSeleccionado.getNombreCompleto() + 
-            " de la materia " + materiaSeleccionada.getNombre() + "?",
-            "Confirmar baja",
-            javax.swing.JOptionPane.YES_NO_OPTION);
 
-        if (confirmar != javax.swing.JOptionPane.YES_OPTION) {
+        if( alumnoSeleccionado == null || materiaSeleccionada == null ){
+            javax.swing.JOptionPane.showMessageDialog(this,
+              "Debe seleccionar un alumno y una materia", "Error",
+              javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
+        int confirmar = javax.swing.JOptionPane.showConfirmDialog(this,
+          "Seguro de dar de baja a " + alumnoSeleccionado.getNombreCompleto()
+          + " de la materia " + materiaSeleccionada.getNombre() + "?",
+          "Confirmar baja",
+          javax.swing.JOptionPane.YES_NO_OPTION);
+
+        if( confirmar != javax.swing.JOptionPane.YES_OPTION ){
+            return;
+        }
+
         ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
         Inscripcion inscripcionAEliminar = null;
 
-        for (Inscripcion i : inscripciones) {
-            if (i.getMateria().getId() == materiaSeleccionada.getId()) {
+        for( Inscripcion i : inscripciones ){
+            if( i.getMateria().getId() == materiaSeleccionada.getId() ){
                 inscripcionAEliminar = i;
                 break;
             }
         }
-        
-        if (inscripcionAEliminar != null) {
+
+        if( inscripcionAEliminar != null ){
             boolean eliminado = inscripcionData.eliminarInscripcion(inscripcionAEliminar.getId());
 
-            if (eliminado) {
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Alumno dado de baja exitosamente de " + materiaSeleccionada.getNombre(), 
-                    "Exito", 
-                    javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            if( eliminado ){
+                javax.swing.JOptionPane.showMessageDialog(this,
+                  "Alumno dado de baja exitosamente de " + materiaSeleccionada.getNombre(),
+                  "Exito",
+                  javax.swing.JOptionPane.INFORMATION_MESSAGE);
                 actualizarTabla();
                 cargarCombo2();
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, 
-                    "Error al dar de baja al alumno", "Error", 
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            } else{
+                javax.swing.JOptionPane.showMessageDialog(this,
+                  "Error al dar de baja al alumno", "Error",
+                  javax.swing.JOptionPane.ERROR_MESSAGE);
             }
-            
-            
-        } else {
-            javax.swing.JOptionPane.showMessageDialog(this, 
-                "No se encontro la inscripcion", "Error", 
-                javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        } else{
+            javax.swing.JOptionPane.showMessageDialog(this,
+              "No se encontro la inscripcion", "Error",
+              javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonDardeBajaActionPerformed
 
+    private void actualizarTabla(){
 
-    private void actualizarTabla() {
-    
         DefaultTableModel modelo = (DefaultTableModel) jTableMaterias.getModel();
         modelo.setRowCount(0);
 
         Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
-        if (alumnoSeleccionado == null) return;
-        
+        if( alumnoSeleccionado == null ){
+            return;
+        }
+
         materiaData md = new materiaData();
         ArrayList<Materia> materias = md.obtenerMaterias();
-        
-        
+
         ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
         ArrayList<Integer> idsInscriptas = new ArrayList<>();
-        for (Inscripcion i : inscripciones) {
+        for( Inscripcion i : inscripciones ){
             idsInscriptas.add(i.getMateria().getId());
         }
-        
+
         // MOSTRADORES PARA LA TABLA SI ELIGIO INCRIPTO O NO
-        if (jRadioButtonInscriptas.isSelected()) {
-            for (Materia m : materias) {
-                if (idsInscriptas.contains(m.getId())) {
+        if( jRadioButtonInscriptas.isSelected() ){
+            for( Materia m : materias ){
+                if( idsInscriptas.contains(m.getId()) ){
                     modelo.addRow(new Object[]{
                         m.getId(),
                         m.getNombre(),
@@ -336,9 +325,9 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
                 }
             }
         }
-        if (jRadioButtonNoInscriptas.isSelected()) {
-            for (Materia m : materias) {
-                if (!idsInscriptas.contains(m.getId())) {
+        if( jRadioButtonNoInscriptas.isSelected() ){
+            for( Materia m : materias ){
+                if( !idsInscriptas.contains(m.getId()) ){
                     modelo.addRow(new Object[]{
                         m.getId(),
                         m.getNombre(),
@@ -349,48 +338,48 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
             }
         }
     }
-    
-    
+
     private void cargarCombo(){
-            jComboAlumno.removeAllItems();
-            for (Alumno alumno : alumnoData.obtenerTodos()) {
-                jComboAlumno.addItem(alumno);
-            }
+        jComboAlumno.removeAllItems();
+        for( Alumno alumno : alumnoData.obtenerTodos() ){
+            jComboAlumno.addItem(alumno);
+        }
     }
-    
-    private void cargarCombo2() {
+
+    private void cargarCombo2(){
         jComboMateria.removeAllItems();
 
         Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
-        if (alumnoSeleccionado == null) return;
+        if( alumnoSeleccionado == null ){
+            return;
+        }
 
         materiaData md = new materiaData();
         ArrayList<Materia> materias = md.obtenerMaterias();
 
         ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
-        
+
         ArrayList<Integer> idsInscriptas = new ArrayList<>();
-        for (Inscripcion i : inscripciones) {
+        for( Inscripcion i : inscripciones ){
             idsInscriptas.add(i.getMateria().getId());
         }
 
         // CARGAR COMBO SEGÚN RADIOBUTTON SELECCIONADO
-        if (jRadioButtonInscriptas.isSelected()) {
-            for (Materia m : materias) {
-                if (idsInscriptas.contains(m.getId())) {
+        if( jRadioButtonInscriptas.isSelected() ){
+            for( Materia m : materias ){
+                if( idsInscriptas.contains(m.getId()) ){
                     jComboMateria.addItem(m);
                 }
             }
-        } else if (jRadioButtonNoInscriptas.isSelected()) {
-            for (Materia m : materias) {
-                if (!idsInscriptas.contains(m.getId())) {
+        } else if( jRadioButtonNoInscriptas.isSelected() ){
+            for( Materia m : materias ){
+                if( !idsInscriptas.contains(m.getId()) ){
                     jComboMateria.addItem(m);
                 }
             }
         }
-        
+
     }
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup GrupoVerMaterias;
@@ -414,7 +403,4 @@ public class InscripcionViews extends javax.swing.JInternalFrame {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
-
-
-    
+ */
