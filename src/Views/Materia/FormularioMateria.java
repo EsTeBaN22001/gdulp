@@ -10,7 +10,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
     
     private int filaSeleccionadaParaEdicion = -1;
     private DefaultTableModel modelo = new DefaultTableModel(
-      new String[]{"Id","Nombre", "Año", "Estado","Inscripto"}, 0
+      new String[]{"Id","Nombre", "Año", "Estado"}, 0
     );
      
     public FormularioMateria() {
@@ -64,12 +64,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                         jComboBox1.setSelectedItem(estadoObj.toString());
                     }
 
-                    // ID Inscripto
-                    if (idinscriptoObj != null) {
-                        jTextField5.setText(idinscriptoObj.toString());
-                    } else {
-                        jTextField5.setText("");
-                    }
 
                 } catch (Exception ex) {
                     // Opcional: muestra error en consola para depurar
@@ -101,7 +95,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jTextField2.setText(null);
         jTextField3.setText(null);
         jTextField4.setText(null);
-        jTextField5.setText(null);
         jButton2.setEnabled(true);
     }
     
@@ -109,7 +102,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         String id = jTextField2.getText().trim();
         String nombres = jTextField3.getText().trim();
         String año = jTextField4.getText().trim();
-        String inscripto = jTextField5.getText().trim();
 
         // Validar id
         if( id.isEmpty() ){
@@ -149,26 +141,7 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             mostrarError("El año debe ser un número válido", jTextField4);
         return false;
         }
-        
-        if (inscripto.isEmpty()){
-           mostrarError("El Id Inscripto es Obligatorio", jTextField5);
-           return false;
-        }
-        try {
-            int añoInt = Integer.parseInt(año);
-            if (añoInt >= 100) {
-                mostrarError("El id Isncripto debe ser menor a 100", jTextField5);
-        return false;
-        }
-            //evitar numeros menor que 0
-        if (añoInt < 0) {
-             mostrarError("El id Inscripto no puede ser menor a 0", jTextField5);
-        return false;
-        }
-        } catch (NumberFormatException e) {
-            mostrarError("El id Inscripto debe ser un número válido", jTextField5);
-        return false;
-        }
+
         return true;
     }
     
@@ -187,7 +160,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                 p.getNombre(),
                 p.getAño(),
                 p.isEstado(),
-                p.getIdInscripto()
             });
         }
     }
@@ -221,8 +193,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         Icono = new javax.swing.JLabel();
@@ -361,16 +331,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Inscripto");
-
-        jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -385,13 +345,9 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel8))
-                                .addGap(56, 56, 56)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel8)
+                                .addGap(68, 68, 68)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
@@ -436,20 +392,12 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4)
                     .addComponent(jLabel7))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton2, jButton3, jButton4, jButton5});
@@ -538,10 +486,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         }// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
-
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         limpiarInputs();
         jButton2.setEnabled(true);
@@ -555,10 +499,9 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
         String ids = jTextField2.getText().trim();
         String nombres = jTextField3.getText().trim();
         String años = jTextField4.getText().trim();
-        String inscriptos = jTextField5.getText().trim();
         
 
-        if (ids.isEmpty() || nombres.isEmpty() || años.isEmpty() || inscriptos.isEmpty()) {
+        if (ids.isEmpty() || nombres.isEmpty() || años.isEmpty() ) {
     JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
     return;
 }
@@ -566,12 +509,11 @@ public class FormularioMateria extends javax.swing.JInternalFrame {
 try {
     int id = Integer.parseInt(ids);
     int año = Integer.parseInt(años);
-    int inscripto = Integer.parseInt(inscriptos);
 
     String valorCombo = (String) jComboBox1.getSelectedItem();
         boolean estado = valorCombo == "Activo" ? true : false;
 
-    Materia materia = new Materia(id, nombres, año, estado, inscripto);
+    Materia materia = new Materia(id, nombres, año, estado);
 
     Materia resultado = materiaData.guardarMateria(materia);
     if (resultado != null) {
@@ -663,17 +605,15 @@ try {
         String ids = jTextField2.getText().trim();
         String nombres = jTextField3.getText().trim();
         String años = jTextField4.getText().trim();
-        String inscriptos = jTextField5.getText().trim();
 
         String valorCombo = (String) jComboBox1.getSelectedItem();
         boolean estado = valorCombo == "Activo" ? true : false;
         
         int id1 = Integer.parseInt(ids);
         int año = Integer.parseInt(años);
-        int inscripto = Integer.parseInt(inscriptos);
 
 
-        Materia materia = new Materia(id1, nombres, año, estado,inscripto);
+        Materia materia = new Materia(id1, nombres, año, estado);
         materia.setId(id1);
 
         if( filaSeleccionadaParaEdicion >= 0 ){
@@ -720,7 +660,6 @@ try {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -735,7 +674,6 @@ try {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
 
