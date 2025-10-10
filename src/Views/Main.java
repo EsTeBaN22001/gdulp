@@ -5,12 +5,14 @@ import Views.Inscripcion.CargaNotas;
 import Views.Inscripcion.InscripcionViews;
 import Views.Inscripcion.ListarInscripciones;
 import Views.Materia.FormularioMateria;
+import java.awt.Color;
 
 public class Main extends javax.swing.JFrame{
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Main.class.getName());
-
+    
     public Main(){
+        
         initComponents();
         setSize(900, 800);
 
@@ -22,7 +24,7 @@ public class Main extends javax.swing.JFrame{
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jImgFondo = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenuBar = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jAgregarAlumno = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -49,8 +51,8 @@ public class Main extends javax.swing.JFrame{
             .addComponent(jImgFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 778, Short.MAX_VALUE)
         );
 
-        jMenuBar1.setBorder(null);
-        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuBar.setBorder(null);
+        jMenuBar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jMenu1.setText("Alumno");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -64,7 +66,7 @@ public class Main extends javax.swing.JFrame{
         });
         jMenu1.add(jAgregarAlumno);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar.add(jMenu1);
 
         jMenu2.setText("Materia");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -78,7 +80,7 @@ public class Main extends javax.swing.JFrame{
         });
         jMenu2.add(jAgregarMateria);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar.add(jMenu2);
 
         jMenu3.setText("Inscripcion");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -110,9 +112,9 @@ public class Main extends javax.swing.JFrame{
         });
         jMenu3.add(jListarInscripciones);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar.add(jMenu3);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,7 +209,7 @@ public class Main extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
     // End of variables declaration//GEN-END:variables
 }
 
