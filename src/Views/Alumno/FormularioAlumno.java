@@ -175,7 +175,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         jTextField1 = new javax.swing.JTextField();
         jTextField5 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jButtonGuardar = new javax.swing.JButton();
@@ -200,6 +199,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         jTable1 = new javax.swing.JTable();
         Icono = new javax.swing.JLabel();
         jButtonClearFilter = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -211,9 +211,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
         setResizable(true);
         setTitle("Formulario Alumno");
         setToolTipText("");
-
-        jLabel1.setFont(jLabel1.getFont().deriveFont(jLabel1.getFont().getStyle() | java.awt.Font.BOLD, jLabel1.getFont().getSize()+6));
-        jLabel1.setText("Formulario Alumno");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Agregar Alumno", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Century Gothic", 1, 16))); // NOI18N
         jPanel2.setToolTipText("Agregar Alumno");
@@ -420,6 +417,9 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel2.setText("Formulario Alumno");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -433,7 +433,7 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
                         .addContainerGap(18, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Icono))
                             .addComponent(jScrollPane1)
@@ -446,8 +446,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jLabel2))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Icono)))
@@ -682,8 +682,8 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBoxBuscar;
     private com.toedter.calendar.JDateChooser jDateChooser;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
