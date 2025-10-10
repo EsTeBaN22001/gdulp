@@ -200,7 +200,7 @@ public class PrubaListado extends javax.swing.JInternalFrame {
                         m.getId(),
                         m.getNombre(),
                         m.getAño(),
-                        m.isEstado() ? "Activa" : "Inactiva"
+                        m.getEstado() ? "Activa" : "Inactiva"
                     });
                 }
             }
@@ -212,7 +212,7 @@ public class PrubaListado extends javax.swing.JInternalFrame {
                         m.getId(),
                         m.getNombre(),
                         m.getAño(),
-                        m.isEstado() ? "Activa" : "Inactiva"
+                        m.getEstado() ? "Activa" : "Inactiva"
                     });
                 }
             }
