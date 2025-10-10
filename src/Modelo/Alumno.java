@@ -100,7 +100,7 @@ public class Alumno{
     }
     
     public String getNombreCompleto() {
-        return nombre + " " + apellido;
+        return "ID: "+ id + " " + nombre + " " + apellido;
     }
 
 
