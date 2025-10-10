@@ -12,7 +12,7 @@ public class Main extends javax.swing.JFrame{
 
     public Main(){
         initComponents();
-        setSize(830, 800);
+        setSize(900, 800);
 
     }
 
@@ -46,12 +46,17 @@ public class Main extends javax.swing.JFrame{
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jImgFondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jImgFondo, javax.swing.GroupLayout.PREFERRED_SIZE, 778, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBorder(null);
+        jMenuBar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         jMenu1.setText("Alumno");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jAgregarAlumno.setText("Formulario Alumno");
+        jAgregarAlumno.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAgregarAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgregarAlumnoActionPerformed(evt);
@@ -62,8 +67,10 @@ public class Main extends javax.swing.JFrame{
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Materia");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jAgregarMateria.setText("Formulario Materia");
+        jAgregarMateria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jAgregarMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jAgregarMateriaActionPerformed(evt);
@@ -74,8 +81,10 @@ public class Main extends javax.swing.JFrame{
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Inscripcion");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jInscripcion.setText("Inscripcion");
+        jInscripcion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jInscripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jInscripcionActionPerformed(evt);
@@ -84,6 +93,7 @@ public class Main extends javax.swing.JFrame{
         jMenu3.add(jInscripcion);
 
         jCargaNotas.setText("CargaNotas");
+        jCargaNotas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jCargaNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCargaNotasActionPerformed(evt);
@@ -92,6 +102,7 @@ public class Main extends javax.swing.JFrame{
         jMenu3.add(jCargaNotas);
 
         jListarInscripciones.setText("Listar Inscripciones");
+        jListarInscripciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jListarInscripciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jListarInscripcionesActionPerformed(evt);

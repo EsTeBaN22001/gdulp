@@ -39,7 +39,8 @@ public class ListarInscripciones extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("ListarInscripciones");
+        setTitle("Listar Inscripciones");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         alumno.setText("alumno");
 
