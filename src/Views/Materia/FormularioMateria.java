@@ -178,7 +178,6 @@ public class FormularioMateria extends javax.swing.JInternalFrame{
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Formulario Materia");
         setToolTipText("");

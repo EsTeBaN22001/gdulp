@@ -108,7 +108,6 @@ public class InscripcionViews extends javax.swing.JInternalFrame{
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("InscripcionViews");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

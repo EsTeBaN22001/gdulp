@@ -207,8 +207,6 @@ public class FormularioAlumno extends javax.swing.JInternalFrame{
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
         setTitle("Formulario Alumno");
         setToolTipText("");
 

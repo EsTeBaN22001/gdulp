@@ -73,7 +73,6 @@ public class PrubaListado extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("InscripcionViews");
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N

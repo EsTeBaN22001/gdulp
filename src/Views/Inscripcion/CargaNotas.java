@@ -85,7 +85,6 @@ public class CargaNotas extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
-        setMaximizable(true);
         setTitle("Carga Notas");
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
