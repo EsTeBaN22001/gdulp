@@ -18,27 +18,23 @@ public class CargaNotas extends javax.swing.JInternalFrame{
 
         @Override
         public boolean isCellEditable(int row, int column){
-            // Solo la columna de nota es editable (columna 2 según tu imagen)
             return column == 3;
         }
 
         @Override
         public void setValueAt(Object value, int row, int column){
-            if( column == 3 ){ // Columna "nota"
+            if( column == 3 ){
                 try{
                     double nuevaNota = Double.parseDouble(value.toString());
 
-                    // Validar rango de nota
                     if( nuevaNota < 0 || nuevaNota > 10 ){
                         JOptionPane.showMessageDialog(null,
                           "La nota debe estar entre 0 y 10");
                         return;
                     }
 
-                    // Obtener el ID de inscripción (columna 0)
                     int idInscripto = (int) getValueAt(row, 0);
 
-                    // Actualizar en la base de datos
                     if( inscripcionData.actualizarNota(idInscripto, nuevaNota) ){
                         super.setValueAt(nuevaNota, row, column);
                         JOptionPane.showMessageDialog(null, "Nota actualizada correctamente");
@@ -60,7 +56,6 @@ public class CargaNotas extends javax.swing.JInternalFrame{
         setSize(520, 464);
         jTableMaterias.setModel(modelo);
 
-        // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
         jComboAlumno.setRenderer(new javax.swing.DefaultListCellRenderer(){
             @Override
             public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){

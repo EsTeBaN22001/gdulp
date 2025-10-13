@@ -166,6 +166,11 @@ public class InscripcionViews extends javax.swing.JInternalFrame{
         jLabel3.setText("Elija Una Materia:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 286, -1, -1));
 
+        jComboMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboMateriaActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboMateria, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 287, 225, -1));
 
         jButtonInscribirse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
@@ -291,6 +296,10 @@ public class InscripcionViews extends javax.swing.JInternalFrame{
         }
 
     }//GEN-LAST:event_jButtonDardeBajaActionPerformed
+
+    private void jComboMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboMateriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboMateriaActionPerformed
 
     private void actualizarTabla(){
 

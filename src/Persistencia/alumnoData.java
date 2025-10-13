@@ -311,4 +311,52 @@ public class alumnoData{
         return false;
     }
 
+    public static Alumno obtenerAlumnoPorId(int id){
+        Alumno alumno = null;
+
+        String sql = "SELECT * FROM alumno WHERE id = ?";
+
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        try{
+            conn = ConexionDB.getConexion();
+
+            if( conn != null ){
+                pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, id);
+
+                rs = pstmt.executeQuery();
+
+                if( rs.next() ){
+                    alumno = new Alumno();
+
+                    alumno.setId(rs.getInt("id"));
+                    alumno.setDni(rs.getString("dni"));
+                    alumno.setApellido(rs.getString("apellido"));
+                    alumno.setNombre(rs.getString("nombre"));
+                    alumno.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                    alumno.setEstado(rs.getBoolean("estado"));
+                }
+            }
+        } catch( SQLException e ){
+            System.err.println("Error al obtener alumno por ID: " + e.getMessage());
+            e.printStackTrace();
+        } finally{
+            try{
+                if( rs != null ){
+                    rs.close();
+                }
+                if( pstmt != null ){
+                    pstmt.close();
+                }
+            } catch( SQLException e ){
+                System.err.println("Error al cerrar recursos: " + e.getMessage());
+            }
+        }
+
+        return alumno;
+    }
+
 }

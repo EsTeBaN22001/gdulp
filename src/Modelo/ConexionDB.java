@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexionDB{
 
-    private static final String URL = "jdbc:mysql://localhost:3306/sgulp";
+    private static final String URL = "jdbc:mysql://localhost:3306/grupo10-sgulp";
     private static final String USUARIO = "root";
     private static final String PASSWORD = "";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
