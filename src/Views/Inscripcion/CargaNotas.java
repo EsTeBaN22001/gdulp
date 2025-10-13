@@ -1,4 +1,3 @@
-
 package Views.Inscripcion;
 
 import Modelo.Alumno;
@@ -8,53 +7,79 @@ import Persistencia.alumnoData;
 import Persistencia.inscripcionData;
 import Persistencia.materiaData;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class CargaNotas extends javax.swing.JInternalFrame {
-    
-    
+public class CargaNotas extends javax.swing.JInternalFrame{
+
     private DefaultTableModel modelo = new DefaultTableModel(
-      new String[]{"Materia", "Año", "Nota"}, 0
-    ) {
+      new String[]{"Id", "Materia", "Año", "Nota"}, 0
+    ){
+
         @Override
-        public boolean isCellEditable(int row, int column) {
-            return column == 2;
+        public boolean isCellEditable(int row, int column){
+            // Solo la columna de nota es editable (columna 2 según tu imagen)
+            return column == 3;
         }
 
         @Override
-        public Class<?> getColumnClass(int columnIndex) {
-            if (columnIndex == 2) {return Double.class;}
-            return super.getColumnClass(columnIndex);
+        public void setValueAt(Object value, int row, int column){
+            if( column == 3 ){ // Columna "nota"
+                try{
+                    double nuevaNota = Double.parseDouble(value.toString());
+
+                    // Validar rango de nota
+                    if( nuevaNota < 0 || nuevaNota > 10 ){
+                        JOptionPane.showMessageDialog(null,
+                          "La nota debe estar entre 0 y 10");
+                        return;
+                    }
+
+                    // Obtener el ID de inscripción (columna 0)
+                    int idInscripto = (int) getValueAt(row, 0);
+
+                    // Actualizar en la base de datos
+                    if( inscripcionData.actualizarNota(idInscripto, nuevaNota) ){
+                        super.setValueAt(nuevaNota, row, column);
+                        JOptionPane.showMessageDialog(null, "Nota actualizada correctamente");
+                    } else{
+                        JOptionPane.showMessageDialog(null, "Error al actualizar la nota");
+                    }
+
+                } catch( NumberFormatException e ){
+                    JOptionPane.showMessageDialog(null, "Ingrese un número válido");
+                }
+            }
         }
+
     };
-    
-    public CargaNotas() {
-        
+
+    public CargaNotas(){
+
         initComponents();
         setSize(520, 464);
         jTableMaterias.setModel(modelo);
-        
+
         // constructor Del Combo box Para solo mostrar el nombre y apellido d:/
         jComboAlumno.setRenderer(new javax.swing.DefaultListCellRenderer(){
             @Override
             public java.awt.Component getListCellRendererComponent(javax.swing.JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus){
                 super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if( value instanceof Alumno alumno ){ setText(alumno.getNombreCompleto());}
+                if( value instanceof Alumno alumno ){
+                    setText(alumno.getNombreCompleto());
+                }
                 return this;
             }
         });
-        
-        
-        
-        
+
         cargarCombo();
-        
+
         jComboAlumno.addActionListener(evt -> actualizarTabla());
-        if (jComboAlumno.getItemCount() > 0) {
+        if( jComboAlumno.getItemCount() > 0 ){
             actualizarTabla();
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -183,9 +208,7 @@ public class CargaNotas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboAlumnoActionPerformed
 
     private void jButtonActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonActualizarActionPerformed
-       
-        
-        
+        actualizarTabla();
     }//GEN-LAST:event_jButtonActualizarActionPerformed
 
     private void cargarCombo(){
@@ -194,31 +217,31 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             jComboAlumno.addItem(alumno);
         }
     }
-    
+
     private void actualizarTabla(){
-        
+
         DefaultTableModel modelo = (DefaultTableModel) jTableMaterias.getModel();
         modelo.setRowCount(0);
-        
+
         Alumno alumnoSeleccionado = (Alumno) jComboAlumno.getSelectedItem();
-        if (alumnoSeleccionado == null) return;
-        
+        if( alumnoSeleccionado == null ){
+            return;
+        }
+
         ArrayList<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumnoSeleccionado.getId());
 
-        // Cargar a la tabla 
-        for (Inscripcion insc : inscripciones) {
+        // Cargar a la tabla
+        for( Inscripcion insc : inscripciones ){
             Materia materia = materiaData.buscarMateriasPor("ID", String.valueOf(insc.getMateria().getId())).get(0);
             modelo.addRow(new Object[]{
+                insc.getId(),
                 materia.getNombre(),
                 materia.getAño(),
                 insc.getNota()
             });
         }
-        
-        
+
     }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonActualizar;
@@ -239,4 +262,4 @@ public class CargaNotas extends javax.swing.JInternalFrame {
             = o_o =_______    \ \
              __^      __(  \.__) )
          (@)<_____>__(_____)____/
-*/
+ */
